@@ -12,9 +12,9 @@ identity:
     uk: Дистрибуція I2P з підтримкою спільноти на основі B19/Java
   title: F5M / I2P
   description:
-    en: Community-maintained distribution of I2P built on B19/Java. This repository holds only the packaging — Dockerfile, build scripts, and configuration, all MIT-licensed; the upstream I2P is fetched at build time and retains its own licensing.
-    es: Distribución de I2P mantenida por la comunidad, construida sobre B19/Java. Este repositorio contiene únicamente el empaquetado — Dockerfile, scripts de compilación y configuración, todo con licencia MIT; el código original de I2P se obtiene en tiempo de compilación y conserva su propia licencia.
-    uk: Дистрибуція I2P з підтримкою спільноти, зібрана на основі B19/Java. Цей репозиторій містить лише пакування — Dockerfile, скрипти збирання та конфігурацію, усе під ліцензією MIT; вихідний код I2P отримують під час збирання, і він зберігає власну ліцензію.
+    en: I2P anonymous-network router with console, HTTP proxy and eepsite hosting, plus baked-in reseed and subscription presets for bootstrapping.
+    es: Router de la red anónima I2P con consola, proxy HTTP y hosting de eepsites, más presets de reseed y suscripciones para el arranque.
+    uk: Маршрутизатор анонімної мережі I2P з консоллю, HTTP-проксі й хостингом eepsite, плюс вбудовані пресети reseed і підписок для старту.
   version: 0.9.2
   released: "2026-10-10"
 includes:
@@ -31,12 +31,15 @@ includes:
   - https://kiota.ch/damian-buho/metadata/raw/branch/main/registry/dockerhub.yaml
   - https://kiota.ch/f5m/metadata/raw/branch/main/include.yaml
 keywords:
-  - i2p
   - anonymity
-  - network
-  - router
+  - anti-censorship
   - censorship
-  - docker
+  - censorship-circumvention
+  - i2p
+  - overlay-network
+  - p2p
+  - privacy
+  - self-hosted
 kind: SoftwareSourceCode
 links:
   - label:

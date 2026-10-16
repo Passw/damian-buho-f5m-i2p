@@ -26,11 +26,14 @@ contact:
 license: MIT
 repository-code: https://kiota.ch/f5m/i2p
 keywords:
-  - i2p
   - anonymity
-  - network
-  - router
+  - anti-censorship
   - censorship
-  - docker
+  - censorship-circumvention
+  - i2p
+  - overlay-network
+  - p2p
+  - privacy
+  - self-hosted
 version: 0.9.2
 date-released: "2026-10-10"
