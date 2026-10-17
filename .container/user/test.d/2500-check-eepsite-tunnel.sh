@@ -29,7 +29,7 @@ do
     exit 1
   fi
   b19-log good "TEST.D" "$(_p "Eepsite tunnel %s is configured with an absolute key path (%s)" "$(basename "${EEPSITE_TUNNEL}")" "${key_file}")"
-done < <(grep --list-files --regexp '^type=httpserver$' "${EEPSITE_DROPIN_DIR}"/*.config 2>/dev/null || true)
+done < <(grep -l --regexp '^type=httpserver$' "${EEPSITE_DROPIN_DIR}"/*.config 2>/dev/null || true)
 
 if [ "${FOUND}" -eq 0 ]; then
   b19-log bad "TEST.D" "$(_p "No eepsite tunnel applied in %s" "${EEPSITE_DROPIN_DIR}")"
