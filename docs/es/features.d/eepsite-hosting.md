@@ -9,6 +9,7 @@ SPDX-License-Identifier: MIT
 # Alojamiento de eepsites con identidad persistente
 
 - La capacidad de proxy inverso publica un servicio local como eepsite de I2P (sitio oculto).
+- Varios eepsites se declaran con un archivo por sitio en un directorio `mirrors.d` montado, cada uno con su propia identidad, así un solo router publica todas las réplicas.
 - La clave de identidad del eepsite persiste entre reinicios mediante un volumen Docker.
 - La clave de identidad se puede cargar desde secretos Docker para direcciones `.b32.i2p` reproducibles.
 - La dirección `.b32.i2p` se extrae y registra automáticamente al inicio.

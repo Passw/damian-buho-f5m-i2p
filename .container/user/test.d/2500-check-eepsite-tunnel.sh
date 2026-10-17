@@ -15,19 +15,25 @@ if [ "${F5M_I2P_EEPSITE_ENABLED:-false}" != "true" ]; then
   exit 0
 fi
 
-# The router reads the drop-in in the router dir, not the rendered file in the base dir
-EEPSITE_TUNNEL="${B19_HOME}/.i2p/i2ptunnel.config.d/03-I2P webserver-i2ptunnel.config"
+# The router reads the drop-ins in the router dir, not the rendered file in the base dir, and one drop-in per declared site
+EEPSITE_DROPIN_DIR="${B19_HOME}/.i2p/i2ptunnel.config.d"
+FOUND=0
 
-if [ ! -f "${EEPSITE_TUNNEL}" ]; then
-  b19-log bad "TEST.D" "$(_p "Eepsite tunnel not applied: %s" "${EEPSITE_TUNNEL}")"
+while IFS= read -r EEPSITE_TUNNEL
+do
+  FOUND=$((FOUND + 1))
+  # A relative key path resolves against the router dir, so I2P mints a throwaway identity
+  key_file="$(sed -n 's/^privKeyFile=//p' "${EEPSITE_TUNNEL}")"
+  if [ "${key_file#/}" = "${key_file}" ]; then
+    b19-log bad "TEST.D" "$(_p "Eepsite key file is not absolute: %s" "${key_file}")"
+    exit 1
+  fi
+  b19-log good "TEST.D" "$(_p "Eepsite tunnel %s is configured with an absolute key path (%s)" "$(basename "${EEPSITE_TUNNEL}")" "${key_file}")"
+done < <(grep --list-files --regexp '^type=httpserver$' "${EEPSITE_DROPIN_DIR}"/*.config 2>/dev/null || true)
+
+if [ "${FOUND}" -eq 0 ]; then
+  b19-log bad "TEST.D" "$(_p "No eepsite tunnel applied in %s" "${EEPSITE_DROPIN_DIR}")"
   exit 1
 fi
 
-# A relative key path resolves against the router dir, so I2P mints a throwaway identity
-key_file="$(sed -n 's/^privKeyFile=//p' "${EEPSITE_TUNNEL}")"
-if [ "${key_file#/}" = "${key_file}" ]; then
-  b19-log bad "TEST.D" "$(_p "Eepsite key file is not absolute: %s" "${key_file}")"
-  exit 1
-fi
-
-b19-log good "TEST.D" "$(_p "Eepsite tunnel is configured with an absolute key path (%s)" "${key_file}")"
+b19-log good "TEST.D" "$(_p "Eepsite tunnels are applied in the router dir (%s)" "${FOUND}")"

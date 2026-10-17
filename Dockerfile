@@ -84,6 +84,9 @@ ENV B19_JAVA_XMS="128m"                                 \
     # container with no published UDP port — see router.config.j2).
     F5M_I2P_HIDDEN_MODE="true"                          \
     F5M_I2P_HTTPS_PROXY_ENABLED="false"                 \
+    # host:port every mirrors.d site without its own target publishes, same single-var reason as F5M_I2P_EEPSITE_TARGET above.
+    F5M_I2P_MIRROR_TARGET=""                                                              \
+    F5M_I2P_MIRRORS_DIR="/app/config/mirrors.d"                                           \
     F5M_I2P_HTTP_PROXY_ENABLED="true"                   \
     # Loopback: I2CP has no authentication, so a peer that reaches this socket creates tunnels here; a sibling container that needs it sets 0.0.0.0.
     F5M_I2P_I2CP_BIND="127.0.0.1"                        \

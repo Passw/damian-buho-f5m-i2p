@@ -12,12 +12,14 @@ SPDX-License-Identifier: MIT
 ### Jinja2-rendered I2P configuration
 
 - Router, tunnels, clients, wrapper, and JVM options all rendered from Jinja2 templates at startup.
+- Rendered configuration is written into the router directory on every start, so changing an environment variable and recreating the container is enough — no volume wipe needed.
 - Every I2P subsystem (SAM, IRC, POP3, SMTP, Jetty, SSH, browser launch) toggleable via environment variables.
 - Inbound/outbound tunnel length and quantity configurable per eepsite tunnel.
 
 ### Eepsite hosting with persistent identity
 
 - Reverse proxy capability publishes a local service as an I2P eepsite (hidden site).
+- Several eepsites are declared by one file per site in a mounted `mirrors.d` directory, each with its own identity, so one router publishes every mirror.
 - Eepsite identity key persisted across restarts via Docker volume.
 - Identity key loadable from Docker secrets for reproducible `.b32.i2p` addresses.
 - `.b32.i2p` address auto-extracted and logged at startup.
@@ -27,7 +29,8 @@ SPDX-License-Identifier: MIT
 ### I2P anonymity router
 
 - Full I2P router installed via silent installer with hash verification.
-- Router console accessible on port 7657 with Traefik routing.
+- Router console accessible on port 7657; routing and TLS are owned by the compose file, the image ships no proxy labels.
+- I2CP and the SAM bridge listen on loopback by default, configurable to any address for a sibling container.
 - HTTP proxy (port 4444) for browsing I2P eepsites; HTTPS proxy available (disabled by default).
 - IPv4 firewalled detection, IPv6 disabled, and UPnP disabled by default for predictable NAT traversal.
 - JVM memory constrained to 128m--256m heap by default, configurable via environment.

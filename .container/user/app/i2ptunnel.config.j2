@@ -85,28 +85,9 @@ tunnel.2.option.outbound.length=3
 tunnel.2.option.outbound.lengthVariance=0
 tunnel.2.startOnLoad={{ ENV.F5M_I2P_POP3_ENABLED }}
 
-# Eepsite httpserver (reverse proxy to backend)
-tunnel.3.name=I2P webserver
-tunnel.3.description=My eepsite
-tunnel.3.type=httpserver
-{%- set _target = ENV.F5M_I2P_EEPSITE_TARGET | split(":") %}
-tunnel.3.targetHost={{ _target[0] }}
-tunnel.3.targetPort={{ _target[1] }}
-tunnel.3.spoofedHost={{ ENV.F5M_I2P_EEPSITE_SPOOFED_HOST }}
-tunnel.3.privKeyFile={{ ENV.F5M_I2P_EEPSITE_KEY_FILE }}
-tunnel.3.i2cpHost={{ ENV.F5M_I2P_I2CP_BIND }}
-tunnel.3.i2cpPort=7654
-tunnel.3.option.inbound.nickname=eepsite
-tunnel.3.option.outbound.nickname=eepsite
-tunnel.3.option.i2cp.destination.sigType=7
-tunnel.3.option.i2cp.leaseSetEncType=6,4
-tunnel.3.option.inbound.length={{ ENV.F5M_I2P_EEPSITE_INBOUND_LENGTH }}
-tunnel.3.option.inbound.lengthVariance=0
-tunnel.3.option.inbound.quantity={{ ENV.F5M_I2P_EEPSITE_INBOUND_QUANTITY }}
-tunnel.3.option.outbound.length={{ ENV.F5M_I2P_EEPSITE_OUTBOUND_LENGTH }}
-tunnel.3.option.outbound.lengthVariance=0
-tunnel.3.option.outbound.quantity={{ ENV.F5M_I2P_EEPSITE_OUTBOUND_QUANTITY }}
-tunnel.3.startOnLoad={{ ENV.F5M_I2P_EEPSITE_ENABLED }}
+# Eepsites are NOT declared here: 200-prepare-eepsites.sh renders one httpserver
+# drop-in per site into <router dir>/i2ptunnel.config.d/<site>.config, so a
+# mirrors.d file adds a site without touching this template.
 
 # SMTP server - postman mail
 tunnel.4.name=smtp.postman.i2p

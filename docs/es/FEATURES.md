@@ -14,12 +14,14 @@ SPDX-License-Identifier: MIT
 ### Configuración de I2P renderizada con Jinja2
 
 - El router, los túneles, los clientes, el wrapper y las opciones de la JVM se renderizan todos desde plantillas Jinja2 al inicio.
+- La configuración renderizada se escribe en el directorio del router en cada inicio, así que cambiar una variable de entorno y recrear el contenedor es suficiente — no hace falta borrar el volumen.
 - Cada subsistema de I2P (SAM, IRC, POP3, SMTP, Jetty, SSH, lanzamiento del navegador) se puede activar o desactivar mediante variables de entorno.
 - La longitud y la cantidad de túneles de entrada y salida son configurables por túnel de eepsite.
 
 ### Alojamiento de eepsites con identidad persistente
 
 - La capacidad de proxy inverso publica un servicio local como eepsite de I2P (sitio oculto).
+- Varios eepsites se declaran con un archivo por sitio en un directorio `mirrors.d` montado, cada uno con su propia identidad, así un solo router publica todas las réplicas.
 - La clave de identidad del eepsite persiste entre reinicios mediante un volumen Docker.
 - La clave de identidad se puede cargar desde secretos Docker para direcciones `.b32.i2p` reproducibles.
 - La dirección `.b32.i2p` se extrae y registra automáticamente al inicio.
@@ -29,7 +31,8 @@ SPDX-License-Identifier: MIT
 ### Router de anonimato I2P
 
 - Router I2P completo instalado mediante instalador silencioso con verificación de hash.
-- Consola del router accesible en el puerto 7657 con enrutado Traefik.
+- Consola del router accesible en el puerto 7657; el enrutado y el TLS pertenecen al archivo compose, la imagen no incluye etiquetas de proxy.
+- I2CP y el puente SAM escuchan en loopback por defecto, y se pueden fijar en cualquier dirección para un contenedor hermano.
 - Proxy HTTP (puerto 4444) para navegar eepsites de I2P; proxy HTTPS disponible (desactivado por defecto).
 - Detección de IPv4 tras cortafuegos, IPv6 desactivado y UPnP desactivado por defecto para un recorrido de NAT predecible.
 - Memoria de la JVM limitada por defecto a un heap de 128m a 256m, configurable mediante el entorno.

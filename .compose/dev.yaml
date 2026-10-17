@@ -19,21 +19,23 @@ services:
       - TZ
       - B19_VERBOSITY=debug
       - F5M_I2P_EEPSITE_ENABLED=true
-      - F5M_I2P_EEPSITE_TARGET=traefik:80
+      - F5M_I2P_MIRROR_TARGET=traefik:80
     labels:
       com.docker.compose.watch: "true"
     networks:
       - dev-network
       - traefik-network
     secrets:
-      - persona-eepsite-key
+      - source: site-eepsite-key
+        # 200-prepare-eepsites.sh reads the site key at /run/secrets/f5m.i2p.site-eepsite-key; without this mapping it lands at /run/secrets/site-eepsite-key and a throwaway identity is minted instead
+        target: f5m.i2p.site-eepsite-key
     volumes:
       # Persist the router dir: netDb, router identity (router.keys.dat) and the addressbook live there, so a recreate without it re-bootstraps the router from zero.
       - i2p-netdb:/app/.i2p
-      # Persist the eepsite identity. The key lives at
-      # /app/data/eepsite/eepPriv.dat (the image default now resolves correctly);
-      # /app/bin/eepsite was the installer’s stock skeleton and persisted nothing.
+      # Persist the eepsite identities (one <site>.dat per mirrors.d site, plus the env-driven eepPriv.dat) and the JVM tmp dir.
       - i2p-data:/app/data
+      # One file per eepsite, the same directory f5m/tor reads its onion mirrors from
+      - ./mirrors.d:/app/config/mirrors.d:ro
       - /etc/localtime:/etc/localtime:ro
     tmpfs:
       - /tmp:size=64m
@@ -45,8 +47,8 @@ networks:
     name: traefik-network
     external: true
 secrets:
-  persona-eepsite-key:
-    file: ${M6E_SECRETS_DIR:-.secrets}/f5m/i2p/persona-eepsite-key
+  site-eepsite-key:
+    file: ${M6E_SECRETS_DIR:-.secrets}/f5m/i2p/site-eepsite-key
 volumes:
   i2p-netdb: null
   i2p-data: null

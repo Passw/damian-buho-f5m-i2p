@@ -92,7 +92,7 @@ org:
         B19_JAVA_SERIES: "26"
     ci:
       secrets:
-        f5m.i2p.persona-eepsite-key:
+        f5m.i2p.site-eepsite-key:
           docker:
             image: self
             run: generate-eepsite-key

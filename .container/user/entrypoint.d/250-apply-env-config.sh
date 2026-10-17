@@ -6,10 +6,10 @@
 
 # Sourced by the entrypoint harness (set -e): fall off the end, never exit.
   I2P_DOT_DIR="${B19_HOME}/.i2p"
-  # I2P reads only the per-entry drop-ins in <router dir>/<config>.config.d/ once that directory exists, so a config copied back into the router dir is ignored and every env var keeps the value of the first boot; the fifth argument is the key form I2P itself writes, since a tunnel drop-in drops the tunnel.N. prefix while a client drop-in keeps it renumbered to clientApp.0.
+  # I2P reads only the per-entry drop-ins in <router dir>/<config>.config.d/ once that directory exists, so a config copied back into the router dir is ignored and every env var keeps the value of the first boot; the fifth argument is the key form I2P itself writes, since a tunnel drop-in drops the tunnel.N. prefix while a client drop-in keeps it renumbered to clientApp.0. The sixth is a manifest of drop-ins the image renders outside the rendered config (one per eepsite site), so they are not reported as unreviewed.
   _ac_project_dropins() {
-    local _ac_source="$1" _ac_prefix="$2" _ac_suffix="$3" _ac_name_key="$4" _ac_keep_prefix="$5"
-    local _ac_dir="${I2P_DOT_DIR}/${_ac_source##*/}.d" _ac_written
+    local _ac_source="$1" _ac_prefix="$2" _ac_suffix="$3" _ac_name_key="$4" _ac_keep_prefix="$5" _ac_manifest="$6"
+    local _ac_dir="${I2P_DOT_DIR}/${_ac_source##*/}.d" _ac_written _ac_owned
     if [ ! -r "${_ac_source}" ]
     then
       b19-log error "I2P" "$(_p "Rendered config missing, cannot apply it: %s" "${_ac_source}")"
@@ -45,10 +45,18 @@
         if (failed) exit 1
       }
     ' "${_ac_source}")"
+    _ac_owned="$(mktemp)"
+    printf '%s\n' "${_ac_written}" | sed -e "s|^${_ac_dir}/||" > "${_ac_owned}"
+    if [ -f "${_ac_manifest}" ]
+    then
+      cat "${_ac_manifest}" >> "${_ac_owned}"
+    fi
+    LC_ALL=C sort --unique --output "${_ac_owned}" "${_ac_owned}"
     while IFS= read -r _ac_stale
     do
       b19-log warn "I2P" "$(_p "Drop-in not rendered by this image, review it: %s" "${_ac_stale}")"
-    done < <(find "${_ac_dir}" -maxdepth 1 -name '*.config' -printf '%f\n' | LC_ALL=C sort | comm -23 - <(printf '%s\n' "${_ac_written}" | sed -e "s|^${_ac_dir}/||" | LC_ALL=C sort))
+    done < <(find "${_ac_dir}" -maxdepth 1 -name '*.config' -printf '%f\n' | LC_ALL=C sort | comm -23 - "${_ac_owned}")
+    rm -f "${_ac_owned}"
     b19-log info "I2P" "$(_p "Applied %s rendered entries as drop-ins in %s" "$(printf '%s\n' "${_ac_written}" | grep --count .)" "${_ac_dir}")"
   }
   # The router rewrites its own router.config on every start, so an env-owned key it does not know survives; re-apply ours over it and keep every key it wrote
@@ -91,6 +99,6 @@
     chmod 0600 "${_ac_target}"
     b19-log info "I2P" "$(_p "Re-applied %s env-owned keys to %s" "${_ac_keys}" "${_ac_target}")"
   }
-  _ac_project_dropins "${B19_HOME}/i2ptunnel.config" "tunnel." "-i2ptunnel.config" "name" "no"
-  _ac_project_dropins "${B19_HOME}/clients.config" "clientApp." "-clients.config" "main" "yes"
+  _ac_project_dropins "${B19_HOME}/i2ptunnel.config" "tunnel." "-i2ptunnel.config" "name" "no" "${I2P_DOT_DIR}/eepsites.list"
+  _ac_project_dropins "${B19_HOME}/clients.config" "clientApp." "-clients.config" "main" "yes" ""
   _ac_apply_router_keys
