@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f5m-i2p\n"
 "Report-Msgid-Bugs-To: https://github.com/damian-buho/f5m-i2p/issues\n"
-"POT-Creation-Date: 2026-10-17 04:45+0000\n"
+"POT-Creation-Date: 2026-10-17 04:52+0000\n"
 "PO-Revision-Date: 2026-02-18 00:00+0000\n"
 "Last-Translator: b19 team\n"
 "Language-Team: Spanish\n"
@@ -261,6 +261,22 @@ msgstr "La dirección de enlace de I2CP no se aplica de forma coherente"
 #: .container/user/test.d/2460-check-i2cp-bind.sh:41
 msgid "I2CP is bound to %s everywhere (%s)"
 msgstr "I2CP está enlazado a %s en todas partes (%s)"
+
+#: .container/user/test.d/2470-check-env-surface.sh:23
+msgid "Declared but never read: %s"
+msgstr "Declarada pero nunca leída: %s"
+
+#: .container/user/test.d/2470-check-env-surface.sh:32
+msgid "Read but never declared: %s"
+msgstr "Leída pero nunca declarada: %s"
+
+#: .container/user/test.d/2470-check-env-surface.sh:39
+msgid "The declared environment surface and its readers disagree"
+msgstr "La superficie de variables declarada y sus lectores no coinciden"
+
+#: .container/user/test.d/2470-check-env-surface.sh:43
+msgid "Router var surface agrees with its readers (%s templates)"
+msgstr "La superficie de variables coincide con sus lectores (%s plantillas)"
 
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:14
 msgid "Eepsite disabled, skipping tunnel check"

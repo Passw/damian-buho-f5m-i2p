@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i2p development\n"
 "Report-Msgid-Bugs-To: https://github.com/damian-buho/f5m-i2p/issues\n"
-"POT-Creation-Date: 2026-10-17 04:45+0000\n"
+"POT-Creation-Date: 2026-10-17 04:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -244,6 +244,22 @@ msgstr ""
 
 #: .container/user/test.d/2460-check-i2cp-bind.sh:41
 msgid "I2CP is bound to %s everywhere (%s)"
+msgstr ""
+
+#: .container/user/test.d/2470-check-env-surface.sh:23
+msgid "Declared but never read: %s"
+msgstr ""
+
+#: .container/user/test.d/2470-check-env-surface.sh:32
+msgid "Read but never declared: %s"
+msgstr ""
+
+#: .container/user/test.d/2470-check-env-surface.sh:39
+msgid "The declared environment surface and its readers disagree"
+msgstr ""
+
+#: .container/user/test.d/2470-check-env-surface.sh:43
+msgid "Router var surface agrees with its readers (%s templates)"
 msgstr ""
 
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:14

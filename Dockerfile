@@ -80,7 +80,6 @@ ENV B19_JAVA_XMS="128m"                                 \
     # port), but this is an outbound destination, not a listening socket.
     F5M_I2P_EEPSITE_TARGET="localhost:8080"             \
     F5M_I2P_GIT_SSH_ENABLED="false"                     \
-    F5M_I2P_HOST="localhost"                            \
     # Hidden mode: skip the SSU reachability probe (it never completes in a
     # container with no published UDP port — see router.config.j2).
     F5M_I2P_HIDDEN_MODE="true"                          \
