@@ -27,6 +27,8 @@ I2P anonymity network router.
 ## Ports
 
 - `7657` — router console (web UI)
+- `7654` — I2CP, loopback only unless `F5M_I2P_I2CP_BIND` says otherwise
+- `7656` — SAM bridge (disabled by default, same bind)
 - `4444` — HTTP proxy
 - `4445` — HTTPS proxy (disabled by default)
 
@@ -36,6 +38,7 @@ I2P anonymity network router.
 - `F5M_I2P_EEPSITE_KEY_FILE="${XDG_DATA_HOME}/eepsite/eepPriv.dat"` — absolute, so the httpserver tunnel reads the key where `200-prepare-eepsite.sh` loads it (a relative default resolved against the router dir `/app` and the provisioned identity was ignored)
 - `F5M_I2P_EEPSITE_SPOOFED_HOST=""` — empty by default so the original Host passes through (a reverse-proxy eepsite must not rewrite it)
 - `F5M_I2P_HTTP_PROXY_ENABLED=true`
+- `F5M_I2P_I2CP_BIND="127.0.0.1"` — one address for I2CP, the SAM listener and every tunnel’s `i2cpHost`; `router.config.j2` derives `i2cp.tcp.bindAllInterfaces` from it and `test.d/2460-check-i2cp-bind.sh` is the guard. I2CP authenticates nothing, so a sibling container that needs it (`f5m/i2p-reseed` serving I2P or a shared-peer bootstrap) sets `0.0.0.0` on the compose side, and that is the only reason to leave loopback. This is the bind variable `03-bind-address-remote-access.md` extends, not a second one
 - `F5M_I2P_IPV4_FIREWALLED=true`, `F5M_I2P_IPV6=false`, `F5M_I2P_UPNP=false`
 - `B19_JAVA_XMS=128m`, `B19_JAVA_XMX=256m`
 

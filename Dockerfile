@@ -86,6 +86,8 @@ ENV B19_JAVA_XMS="128m"                                 \
     F5M_I2P_HIDDEN_MODE="true"                          \
     F5M_I2P_HTTPS_PROXY_ENABLED="false"                 \
     F5M_I2P_HTTP_PROXY_ENABLED="true"                   \
+    # Loopback: I2CP has no authentication, so a peer that reaches this socket creates tunnels here; a sibling container that needs it sets 0.0.0.0.
+    F5M_I2P_I2CP_BIND="127.0.0.1"                        \
     F5M_I2P_IPV4_FIREWALLED="true"                      \
     F5M_I2P_IPV6="false"                                \
     F5M_I2P_IRC_ENABLED="false"                         \

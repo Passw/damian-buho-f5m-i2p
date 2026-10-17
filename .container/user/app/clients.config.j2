@@ -17,7 +17,7 @@ clientApp.0.startOnLoad=true
 # SAM bridge
 clientApp.1.main=net.i2p.sam.SAMBridge
 clientApp.1.name=SAM application bridge
-clientApp.1.args=sam.keys 0.0.0.0 7656 i2cp.tcp.host=0.0.0.0 i2cp.tcp.port=7654
+clientApp.1.args=sam.keys {{ ENV.F5M_I2P_I2CP_BIND }} 7656 i2cp.tcp.host={{ ENV.F5M_I2P_I2CP_BIND }} i2cp.tcp.port=7654
 clientApp.1.startOnLoad={{ ENV.F5M_I2P_SAM_ENABLED }}
 
 # Tunnel controller (required - loads i2ptunnel.config)

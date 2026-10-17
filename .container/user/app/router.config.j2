@@ -5,7 +5,9 @@ SPDX-License-Identifier: MIT
 #}
 
 # Managed by j2 - do not edit at runtime
-i2cp.tcp.bindAllInterfaces=true
+# I2CP carries no authentication, so a peer that reaches this socket creates tunnels here; the default stays on loopback
+i2cp.tcp.bindAllInterfaces={{ "true" if ENV.F5M_I2P_I2CP_BIND != "127.0.0.1" else "false" }}
+i2cp.tcp.host={{ ENV.F5M_I2P_I2CP_BIND }}
 i2np.ipv4.firewalled={{ ENV.F5M_I2P_IPV4_FIREWALLED }}
 i2np.ntcp.ipv6={{ ENV.F5M_I2P_IPV6 }}
 i2np.udp.ipv6={{ ENV.F5M_I2P_IPV6 }}
