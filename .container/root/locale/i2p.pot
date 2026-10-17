@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i2p development\n"
 "Report-Msgid-Bugs-To: https://github.com/damian-buho/f5m-i2p/issues\n"
-"POT-Creation-Date: 2026-10-17 04:43+0000\n"
+"POT-Creation-Date: 2026-10-17 04:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,6 +228,22 @@ msgstr ""
 
 #: .container/user/test.d/2450-check-applied-config.sh:70
 msgid "Rendered config is applied in the router dir (%s)"
+msgstr ""
+
+#: .container/user/test.d/2460-check-i2cp-bind.sh:22
+msgid "I2CP is not bound as %s asked in %s"
+msgstr ""
+
+#: .container/user/test.d/2460-check-i2cp-bind.sh:30
+msgid "Tunnel dials I2CP at %s, expected %s"
+msgstr ""
+
+#: .container/user/test.d/2460-check-i2cp-bind.sh:37
+msgid "The I2CP bind address is not applied consistently"
+msgstr ""
+
+#: .container/user/test.d/2460-check-i2cp-bind.sh:41
+msgid "I2CP is bound to %s everywhere (%s)"
 msgstr ""
 
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:14

@@ -28,7 +28,9 @@ services:
     secrets:
       - persona-eepsite-key
     volumes:
-      # Persist the eepsite identity + router netDb. The key lives at
+      # Persist the router dir: netDb, router identity (router.keys.dat) and the addressbook live there, so a recreate without it re-bootstraps the router from zero.
+      - i2p-netdb:/app/.i2p
+      # Persist the eepsite identity. The key lives at
       # /app/data/eepsite/eepPriv.dat (the image default now resolves correctly);
       # /app/bin/eepsite was the installer’s stock skeleton and persisted nothing.
       - i2p-data:/app/data
@@ -46,4 +48,5 @@ secrets:
   persona-eepsite-key:
     file: ${M6E_SECRETS_DIR:-.secrets}/f5m/i2p/persona-eepsite-key
 volumes:
+  i2p-netdb: null
   i2p-data: null

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f5m-i2p\n"
 "Report-Msgid-Bugs-To: https://github.com/damian-buho/f5m-i2p/issues\n"
-"POT-Creation-Date: 2026-10-17 04:43+0000\n"
+"POT-Creation-Date: 2026-10-17 04:45+0000\n"
 "PO-Revision-Date: 2026-02-18 00:00+0000\n"
 "Last-Translator: b19 team\n"
 "Language-Team: Spanish\n"
@@ -243,7 +243,24 @@ msgstr ""
 
 #: .container/user/test.d/2450-check-applied-config.sh:70
 msgid "Rendered config is applied in the router dir (%s)"
-msgstr "La configuración renderizada está aplicada en el directorio del rúter (%s)"
+msgstr ""
+"La configuración renderizada está aplicada en el directorio del rúter (%s)"
+
+#: .container/user/test.d/2460-check-i2cp-bind.sh:22
+msgid "I2CP is not bound as %s asked in %s"
+msgstr "I2CP no está enlazado como pide %s en %s"
+
+#: .container/user/test.d/2460-check-i2cp-bind.sh:30
+msgid "Tunnel dials I2CP at %s, expected %s"
+msgstr "El túnel se conecta a I2CP en %s, se esperaba %s"
+
+#: .container/user/test.d/2460-check-i2cp-bind.sh:37
+msgid "The I2CP bind address is not applied consistently"
+msgstr "La dirección de enlace de I2CP no se aplica de forma coherente"
+
+#: .container/user/test.d/2460-check-i2cp-bind.sh:41
+msgid "I2CP is bound to %s everywhere (%s)"
+msgstr "I2CP está enlazado a %s en todas partes (%s)"
 
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:14
 msgid "Eepsite disabled, skipping tunnel check"

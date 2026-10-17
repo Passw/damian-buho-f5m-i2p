@@ -65,7 +65,7 @@ A j2 tag closing with `-%}` on its own line strips the newline after itself and 
 
 ## Volume
 
-`i2p-data` → `/app/data` — persists the eepsite identity key (`/app/data/eepsite/eepPriv.dat`) + router netDb across restarts. (`/app/bin/eepsite` is the installer’s stock skeleton and persists nothing.)
+Two of them, and the split is not cosmetic: `${B19_HOME}/.i2p` is the router dir, where netDb, `router.keys.dat` (the router identity, and therefore the address), `router.info`, `peerProfiles`, `addressbook` and `i2psnark` are written; `${XDG_DATA_HOME}` (`/app/data`) carries the eepsite identity key (`/app/data/eepsite/eepPriv.dat`) and the JVM tmp dir. `.container/user/build.d/volumes.deps` pre-creates both so a fresh named volume gets the right ownership, but a compose file that mounts only `/app/data` still re-bootstraps the router on every recreate — mount both. (`/app/bin/eepsite` is the installer’s stock skeleton and persists nothing.)
 
 ## Native crypto (java.io.tmpdir)
 
