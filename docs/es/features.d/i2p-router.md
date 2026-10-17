@@ -9,7 +9,7 @@ SPDX-License-Identifier: MIT
 # Router de anonimato I2P
 
 - Router I2P completo instalado mediante instalador silencioso con verificación de hash.
-- Consola del router accesible en el puerto 7657 con enrutado Traefik.
+- Consola del router accesible en el puerto 7657; el enrutado y el TLS pertenecen al archivo compose, la imagen no incluye etiquetas de proxy.
 - I2CP y el puente SAM escuchan en loopback por defecto, y se pueden fijar en cualquier dirección para un contenedor hermano.
 - Proxy HTTP (puerto 4444) para navegar eepsites de I2P; proxy HTTPS disponible (desactivado por defecto).
 - Detección de IPv4 tras cortafuegos, IPv6 desactivado y UPnP desactivado por defecto para un recorrido de NAT predecible.

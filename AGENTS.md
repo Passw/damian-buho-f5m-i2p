@@ -85,9 +85,6 @@ No SAM bridge, no Jetty, no browser launch in default config.
 
 ## Documentation
 
-- [Project goals and objectives](@docs/goal.md)
-- [Fitness criteria and acceptance criteria](@docs/fit.md)
-- [Completed features and milestones](@docs/done.md)
-- [Known limitations and caveats](@docs/caveats.md)
-- [Future development plans](@docs/roadmap.md)
-- [Available make targets and usage](@docs/MAKEFILE.md)
+- [Features](@docs/FEATURES.md), one fragment per feature in `docs/features.d/`
+- [Roadmap](@docs/ROADMAP.md), one fragment per item in `docs/roadmap.d/`
+- [Available make targets and usage](@docs/how-to/MAKEFILE.md)

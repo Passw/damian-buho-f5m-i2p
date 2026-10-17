@@ -7,7 +7,7 @@ SPDX-License-Identifier: MIT
 # I2P anonymity router
 
 - Full I2P router installed via silent installer with hash verification.
-- Router console accessible on port 7657 with Traefik routing.
+- Router console accessible on port 7657; routing and TLS are owned by the compose file, the image ships no proxy labels.
 - I2CP and the SAM bridge listen on loopback by default, configurable to any address for a sibling container.
 - HTTP proxy (port 4444) for browsing I2P eepsites; HTTPS proxy available (disabled by default).
 - IPv4 firewalled detection, IPv6 disabled, and UPnP disabled by default for predictable NAT traversal.
