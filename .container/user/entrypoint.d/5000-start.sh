@@ -34,19 +34,12 @@
     fi
     # Ensure subdirs the router will need are present with correct ownership
     mkdir -p "${XDG_DATA_HOME}/eepsite" 2>/dev/null || true
-    # I2P copies these from base to the user dir only on first install. When the
-    # user dir already exists (existing volume) but the file is missing (observed
-    # on kiota-i2p: no /app/.i2p/clients.config or i2ptunnel.config, router logged
-    # “No client apps or router console configured — we are just a router” and
-    # healthcheck never passed), the router stays headless or ignores the template
-    # settings. Ensure they exist before start.
-    for _cfg in clients.config hosts.txt i2ptunnel.config router.config; do
-      if [ ! -f "${I2P_DOT_DIR}/${_cfg}" ] && [ -f "${B19_HOME}/${_cfg}" ]; then
-        b19-log info "I2P" "$(_p "Restoring missing %s to user dir" "${_cfg}")"
-        cp "${B19_HOME}/${_cfg}" "${I2P_DOT_DIR}/${_cfg}" 2>/dev/null || true
-        chmod 0600 "${I2P_DOT_DIR}/${_cfg}" 2>/dev/null || true
-      fi
-    done
+    # Without the bundled hosts the naming service starts with zero entries, so every .i2p name fails while the router reports healthy
+    if [ ! -f "${I2P_DOT_DIR}/hosts.txt" ] && [ -f "${B19_HOME}/hosts.txt" ]; then
+      b19-log info "I2P" "$(_p "Restoring missing %s to user dir" "hosts.txt")"
+      cp "${B19_HOME}/hosts.txt" "${I2P_DOT_DIR}/hosts.txt" 2>/dev/null || true
+      chmod 0600 "${I2P_DOT_DIR}/hosts.txt" 2>/dev/null || true
+    fi
     # Wizard completion lives in the router dir’s own router.config, which a fresh container recreates empty
     I2P_ROUTER_CONFIG="${I2P_DOT_DIR}/router.config"
     WIZARD_FLAG="routerconsole.welcomeWizardComplete"

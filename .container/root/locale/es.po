@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f5m-i2p\n"
 "Report-Msgid-Bugs-To: https://github.com/damian-buho/f5m-i2p/issues\n"
-"POT-Creation-Date: 2026-10-09 21:40+0000\n"
+"POT-Creation-Date: 2026-10-17 04:43+0000\n"
 "PO-Revision-Date: 2026-02-18 00:00+0000\n"
 "Last-Translator: b19 team\n"
 "Language-Team: Spanish\n"
@@ -108,6 +108,27 @@ msgstr "Proxy de reseed sembrado %s vía %s:%s"
 msgid "Keeping existing reseed proxy settings"
 msgstr "Manteniendo la configuración existente del proxy de reseed"
 
+#: .container/user/entrypoint.d/250-apply-env-config.sh:15
+#: .container/user/entrypoint.d/250-apply-env-config.sh:60
+msgid "Rendered config missing, cannot apply it: %s"
+msgstr "Falta la configuración renderizada, no se puede aplicar: %s"
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:50
+msgid "Drop-in not rendered by this image, review it: %s"
+msgstr "Drop-in no renderizado por esta imagen, revísalo: %s"
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:52
+msgid "Applied %s rendered entries as drop-ins in %s"
+msgstr "Se aplicaron %s entradas renderizadas como drop-ins en %s"
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:66
+msgid "Seeded %s from the rendered config"
+msgstr "Se inicializó %s desde la configuración renderizada"
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:92
+msgid "Re-applied %s env-owned keys to %s"
+msgstr "Se reaplicaron %s claves propias del entorno a %s"
+
 #: .container/user/entrypoint.d/5000-start.sh:21
 msgid ""
 "Directory %s not writable (owner %s) — wrapper will fail with Permission "
@@ -133,15 +154,15 @@ msgstr ""
 msgid "Recovered writability on %s"
 msgstr "Se recuperó la escritura en %s"
 
-#: .container/user/entrypoint.d/5000-start.sh:45
+#: .container/user/entrypoint.d/5000-start.sh:39
 msgid "Restoring missing %s to user dir"
 msgstr "Restaurando %s faltante al directorio de usuario"
 
-#: .container/user/entrypoint.d/5000-start.sh:54
+#: .container/user/entrypoint.d/5000-start.sh:47
 msgid "Seeding %s in %s"
 msgstr "Sembrando %s en %s"
 
-#: .container/user/entrypoint.d/5000-start.sh:57
+#: .container/user/entrypoint.d/5000-start.sh:50
 msgid "No command provided, will run %s"
 msgstr "No se indicó ningún comando, se ejecutará %s"
 
@@ -201,13 +222,36 @@ msgstr "El tipo de túnel no se renderiza literalmente: %s"
 msgid "Every tunnel type is rendered verbatim (%s)"
 msgstr "Todos los tipos de túnel se renderizan literalmente (%s)"
 
+#: .container/user/test.d/2450-check-applied-config.sh:32
+msgid "Drop-in not applied: %s"
+msgstr "Drop-in no aplicado: %s"
+
+#: .container/user/test.d/2450-check-applied-config.sh:42
+msgid "Applied drop-in lacks %s: %s"
+msgstr "El drop-in aplicado no contiene %s: %s"
+
+#: .container/user/test.d/2450-check-applied-config.sh:59
+msgid "Router dir has %s=%s, rendered config says %s"
+msgstr ""
+"El directorio del rúter tiene %s=%s, la configuración renderizada dice %s"
+
+#: .container/user/test.d/2450-check-applied-config.sh:66
+msgid "The rendered config is not fully applied in the router dir"
+msgstr ""
+"La configuración renderizada no está aplicada por completo en el directorio "
+"del rúter"
+
+#: .container/user/test.d/2450-check-applied-config.sh:70
+msgid "Rendered config is applied in the router dir (%s)"
+msgstr "La configuración renderizada está aplicada en el directorio del rúter (%s)"
+
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:14
 msgid "Eepsite disabled, skipping tunnel check"
 msgstr "Eepsite deshabilitado, se omite la comprobación del túnel"
 
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:22
-msgid "Eepsite tunnel not started yet, skipping (%s)"
-msgstr "El túnel del eepsite aún no ha arrancado, se omite (%s)"
+msgid "Eepsite tunnel not applied: %s"
+msgstr "Túnel del eepsite no aplicado: %s"
 
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:29
 msgid "Eepsite key file is not absolute: %s"

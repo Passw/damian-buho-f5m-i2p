@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: f5m-i2p\n"
 "Report-Msgid-Bugs-To: https://github.com/damian-buho/f5m-i2p/issues\n"
-"POT-Creation-Date: 2026-10-09 21:40+0000\n"
+"POT-Creation-Date: 2026-10-17 04:43+0000\n"
 "PO-Revision-Date: 2026-02-18 00:00+0000\n"
 "Last-Translator: b19 team\n"
 "Language-Team: Ukrainian\n"
@@ -107,6 +107,27 @@ msgstr "Проксі ресиду засіяно %s через %s:%s"
 msgid "Keeping existing reseed proxy settings"
 msgstr "Зберігаю наявні налаштування проксі ресиду"
 
+#: .container/user/entrypoint.d/250-apply-env-config.sh:15
+#: .container/user/entrypoint.d/250-apply-env-config.sh:60
+msgid "Rendered config missing, cannot apply it: %s"
+msgstr "Відтворена конфігурація відсутня, застосувати її неможливо: %s"
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:50
+msgid "Drop-in not rendered by this image, review it: %s"
+msgstr "Цей drop-in не відтворено цим образом, перегляньте його: %s"
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:52
+msgid "Applied %s rendered entries as drop-ins in %s"
+msgstr "Застосовано %s відтворених записів як drop-in у %s"
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:66
+msgid "Seeded %s from the rendered config"
+msgstr "Ініціалізовано %s з відтвореної конфігурації"
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:92
+msgid "Re-applied %s env-owned keys to %s"
+msgstr "Повторно застосовано %s ключів середовища до %s"
+
 #: .container/user/entrypoint.d/5000-start.sh:21
 msgid ""
 "Directory %s not writable (owner %s) — wrapper will fail with Permission "
@@ -131,15 +152,15 @@ msgstr "Досі недоступно для запису: %s — перерив
 msgid "Recovered writability on %s"
 msgstr "Відновлено запис у %s"
 
-#: .container/user/entrypoint.d/5000-start.sh:45
+#: .container/user/entrypoint.d/5000-start.sh:39
 msgid "Restoring missing %s to user dir"
 msgstr "Відновлення відсутнього %s до каталогу користувача"
 
-#: .container/user/entrypoint.d/5000-start.sh:54
+#: .container/user/entrypoint.d/5000-start.sh:47
 msgid "Seeding %s in %s"
 msgstr "Заповнення %s у %s"
 
-#: .container/user/entrypoint.d/5000-start.sh:57
+#: .container/user/entrypoint.d/5000-start.sh:50
 msgid "No command provided, will run %s"
 msgstr "Команду не вказано, буде запущено %s"
 
@@ -199,13 +220,34 @@ msgstr "Тип тунелю не відтворюється дослівно: %s
 msgid "Every tunnel type is rendered verbatim (%s)"
 msgstr "Усі типи тунелів відтворюються дослівно (%s)"
 
+#: .container/user/test.d/2450-check-applied-config.sh:32
+msgid "Drop-in not applied: %s"
+msgstr "Drop-in не застосовано: %s"
+
+#: .container/user/test.d/2450-check-applied-config.sh:42
+msgid "Applied drop-in lacks %s: %s"
+msgstr "Застосований drop-in не містить %s: %s"
+
+#: .container/user/test.d/2450-check-applied-config.sh:59
+msgid "Router dir has %s=%s, rendered config says %s"
+msgstr "Каталог маршрутизатора має %s=%s, відтворена конфігурація каже %s"
+
+#: .container/user/test.d/2450-check-applied-config.sh:66
+msgid "The rendered config is not fully applied in the router dir"
+msgstr ""
+"Відтворена конфігурація не застосована повністю в каталозі маршрутизатора"
+
+#: .container/user/test.d/2450-check-applied-config.sh:70
+msgid "Rendered config is applied in the router dir (%s)"
+msgstr "Відтворена конфігурація застосована в каталозі маршрутизатора (%s)"
+
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:14
 msgid "Eepsite disabled, skipping tunnel check"
 msgstr "Eepsite вимкнено, перевірку тунелю пропущено"
 
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:22
-msgid "Eepsite tunnel not started yet, skipping (%s)"
-msgstr "Тунель eepsite ще не запущено, пропускається (%s)"
+msgid "Eepsite tunnel not applied: %s"
+msgstr "Тунель eepsite не застосовано: %s"
 
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:29
 msgid "Eepsite key file is not absolute: %s"

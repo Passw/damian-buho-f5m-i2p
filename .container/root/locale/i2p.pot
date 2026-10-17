@@ -4,9 +4,9 @@
 # SPDX-License-Identifier: MIT
 msgid ""
 msgstr ""
-"Project-Id-Version: i2p 0.8.0-1-ga3a1887\n"
+"Project-Id-Version: i2p development\n"
 "Report-Msgid-Bugs-To: https://github.com/damian-buho/f5m-i2p/issues\n"
-"POT-Creation-Date: 2026-10-09 21:40+0000\n"
+"POT-Creation-Date: 2026-10-17 04:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,6 +101,27 @@ msgstr ""
 msgid "Keeping existing reseed proxy settings"
 msgstr ""
 
+#: .container/user/entrypoint.d/250-apply-env-config.sh:15
+#: .container/user/entrypoint.d/250-apply-env-config.sh:60
+msgid "Rendered config missing, cannot apply it: %s"
+msgstr ""
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:50
+msgid "Drop-in not rendered by this image, review it: %s"
+msgstr ""
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:52
+msgid "Applied %s rendered entries as drop-ins in %s"
+msgstr ""
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:66
+msgid "Seeded %s from the rendered config"
+msgstr ""
+
+#: .container/user/entrypoint.d/250-apply-env-config.sh:92
+msgid "Re-applied %s env-owned keys to %s"
+msgstr ""
+
 #: .container/user/entrypoint.d/5000-start.sh:21
 msgid ""
 "Directory %s not writable (owner %s) — wrapper will fail with Permission "
@@ -121,15 +142,15 @@ msgstr ""
 msgid "Recovered writability on %s"
 msgstr ""
 
-#: .container/user/entrypoint.d/5000-start.sh:45
+#: .container/user/entrypoint.d/5000-start.sh:39
 msgid "Restoring missing %s to user dir"
 msgstr ""
 
-#: .container/user/entrypoint.d/5000-start.sh:54
+#: .container/user/entrypoint.d/5000-start.sh:47
 msgid "Seeding %s in %s"
 msgstr ""
 
-#: .container/user/entrypoint.d/5000-start.sh:57
+#: .container/user/entrypoint.d/5000-start.sh:50
 msgid "No command provided, will run %s"
 msgstr ""
 
@@ -189,12 +210,32 @@ msgstr ""
 msgid "Every tunnel type is rendered verbatim (%s)"
 msgstr ""
 
+#: .container/user/test.d/2450-check-applied-config.sh:32
+msgid "Drop-in not applied: %s"
+msgstr ""
+
+#: .container/user/test.d/2450-check-applied-config.sh:42
+msgid "Applied drop-in lacks %s: %s"
+msgstr ""
+
+#: .container/user/test.d/2450-check-applied-config.sh:59
+msgid "Router dir has %s=%s, rendered config says %s"
+msgstr ""
+
+#: .container/user/test.d/2450-check-applied-config.sh:66
+msgid "The rendered config is not fully applied in the router dir"
+msgstr ""
+
+#: .container/user/test.d/2450-check-applied-config.sh:70
+msgid "Rendered config is applied in the router dir (%s)"
+msgstr ""
+
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:14
 msgid "Eepsite disabled, skipping tunnel check"
 msgstr ""
 
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:22
-msgid "Eepsite tunnel not started yet, skipping (%s)"
+msgid "Eepsite tunnel not applied: %s"
 msgstr ""
 
 #: .container/user/test.d/2500-check-eepsite-tunnel.sh:29

@@ -15,12 +15,12 @@ if [ "${F5M_I2P_EEPSITE_ENABLED:-false}" != "true" ]; then
   exit 0
 fi
 
-TUNNELS_CONFIG="${B19_HOME}/i2ptunnel.config"
-EEPSITE_TUNNEL="${TUNNELS_CONFIG}.d/03-I2P webserver-i2ptunnel.config"
+# The router reads the drop-in in the router dir, not the rendered file in the base dir
+EEPSITE_TUNNEL="${B19_HOME}/.i2p/i2ptunnel.config.d/03-I2P webserver-i2ptunnel.config"
 
 if [ ! -f "${EEPSITE_TUNNEL}" ]; then
-  b19-log warn "TEST.D" "$(_p "Eepsite tunnel not started yet, skipping (%s)" "${EEPSITE_TUNNEL}")"
-  exit 0
+  b19-log bad "TEST.D" "$(_p "Eepsite tunnel not applied: %s" "${EEPSITE_TUNNEL}")"
+  exit 1
 fi
 
 # A relative key path resolves against the router dir, so I2P mints a throwaway identity
