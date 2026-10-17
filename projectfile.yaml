@@ -17,6 +17,7 @@ identity:
     uk: Маршрутизатор анонімної мережі I2P з консоллю, HTTP-проксі й хостингом eepsite, плюс вбудовані пресети reseed і підписок для старту.
   version: 0.9.2
   released: "2026-10-10"
+  visibility: public
 includes:
   - .makefile/b19/ci.yaml
   - .makefile/b19/images/ubuntu.yaml
