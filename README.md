@@ -58,6 +58,10 @@ If the registries above are unreachable, pull from the origin instead:
 docker pull kiota.ch/f5m/i2p:latest
 ```
 
+## Configuration
+
+See [Configuration](docs/CONFIGURATION.md) for every setting.
+
 ## Building
 
 Clone the repository with its submodules:
@@ -83,7 +87,7 @@ Pipeline entry points:
 - `make analyzed` — Run the heavy analysis sweep (mutation testing, benchmarks)
 - `make audited` — Re-scan the pinned dependencies and published artifacts for new vulnerabilities
 - `make check-outdated` — Report every pinned dependency that lags upstream
-- `make ready-to-publish` — Run the pseudo-CI pipeline locally — build, test and scan, without publishing
+- `make release-is-ready` — Run the pseudo-CI pipeline locally — build, test and scan, without publishing
 
 ## Roadmap
 

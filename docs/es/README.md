@@ -60,6 +60,10 @@ Si los registros anteriores no están disponibles, descarga desde el origen:
 docker pull kiota.ch/f5m/i2p:latest
 ```
 
+## Configuración
+
+Consulta [Configuración](../CONFIGURATION.md) para ver todos los ajustes.
+
 ## Compilación
 
 Clona el repositorio con sus submódulos:
@@ -85,7 +89,7 @@ Puntos de entrada de la canalización:
 - `make analyzed` — Ejecuta el análisis pesado (pruebas de mutación, benchmarks)
 - `make audited` — Vuelve a escanear las dependencias fijadas y los artefactos publicados en busca de vulnerabilidades nuevas
 - `make check-outdated` — Informa de cada dependencia fijada que va por detrás de su versión upstream
-- `make ready-to-publish` — Ejecuta localmente el pipeline pseudo-CI — compila, prueba y escanea, sin publicar
+- `make release-is-ready` — Ejecuta localmente el pipeline pseudo-CI — compila, prueba y escanea, sin publicar
 
 ## Hoja de ruta
 
