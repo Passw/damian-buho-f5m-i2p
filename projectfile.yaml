@@ -89,7 +89,6 @@ org:
       args:
         B19_JAVA_DISTRO: temurin
         B19_JAVA_BUILD_IMAGE: ""
-        B19_JAVA_SERIES: "27"
     ci:
       secrets:
         f5m.i2p.site-eepsite-key:
