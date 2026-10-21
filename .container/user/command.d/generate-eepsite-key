@@ -17,11 +17,9 @@ mkdir -p "${EEPSITE_DIR}"
 if command -v java >/dev/null 2>&1
 then
   b19-log info "EEPKEYGEN" "$(_ 'Using I2P Java for key generation')"
-  # PrivateKeyFile writes the binary key to the file arg AND prints a text dump
-  # of the Destination/B32 to stdout. Redirect that dump to stderr so only the
-  # raw binary key reaches this command's stdout (the captured secret).
+  # Ed25519 destination; the text dump carries the private key, so it is discarded
   java -cp "${B19_HOME}/lib/i2p.jar:${B19_HOME}/lib/router.jar" \
-    net.i2p.data.PrivateKeyFile "${EEPSITE_DIR}/eepPriv.dat" 1>&2 2>/dev/null || true
+    net.i2p.data.PrivateKeyFile -c EdDSA_SHA512_Ed25519 "${EEPSITE_DIR}/eepPriv.dat" >/dev/null 2>&1 || true
 fi
 
 # No fallback: an Ed25519 DER blob base64-wrapped is not an eepPriv.dat, and a
